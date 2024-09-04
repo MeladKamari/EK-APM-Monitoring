@@ -1,0 +1,56 @@
+services:
+  elasticsearch:
+    image: elasticsearch:7.17.23
+    container_name: elasticsearch
+    networks:
+      - elastickibana
+    volumes:
+      - elastic:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=7uRbyKY6b06FURDHslkoF3qLy
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    restart: always
+
+  kibana:
+    image: kibana:7.17.23
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=7uRbyKY6b06FURDHslkoF3qLy
+    networks:
+      - elastickibana
+    restart: always
+
+  apm-server:
+    image: elastic/apm-server:7.17.23
+    container_name: apm-server
+    depends_on:
+      - elasticsearch
+    networks:
+      - elastickibana
+    volumes:
+      - ./apm-server.yml:/usr/share/apm-server/apm-server.yml
+    ports:
+      - "8200:8200"
+    restart: always
+
+networks:
+  elastickibana:
+    driver: bridge
+
+volumes:
+  elastic:
+    driver: local

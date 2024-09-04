@@ -1,0 +1,62 @@
+# .NET Core specific ignores
+
+# Ignore build output directories
+bin/
+obj/
+
+# User-specific files
+*.rsuser
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+*.vsp
+
+# Visual Studio Code specific
+.vscode/
+
+# Rider specific
+.idea/
+*.sln.iml
+
+# Mono auto generated files
+mono_crash.*
+
+# OS generated files
+[Dd]esktop.ini
+[Tt]humbs.db
+*.DS_Store
+
+# DotNet specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored if NuGet Package Restore is enabled.
+# Uncomment if you have a packages folder.
+# **/packages/*
+# Uncomment if necessary however generally it will be regenerated when needed
+# **/project.lock.json
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Ignore database files
+*.db
+
+# Ignore Migrations folder
+Migrations/
