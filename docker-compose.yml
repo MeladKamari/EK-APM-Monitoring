@@ -24,6 +24,8 @@ services:
   kibana:
     image: kibana:7.17.23
     container_name: kibana
+    depends_on:
+      - elasticsearch
     ports:
       - "5601:5601"
     environment:
